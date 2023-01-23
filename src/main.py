@@ -92,12 +92,12 @@ class Main:
 
         self.enviando.clear()
 
-    def seta_forno(self):
+    def controle(self):
         if self.ligado.is_set():
             if self.funcionando.is_set():
-                self.pid_value = self.pid.pid_controle(self.temperatura_referencia, self.temperatura_interna)
-                print('\n---- pid:', self.pid_value)
 
+                self.pid_value = self.pid.pid_controle(self.temperatura_referencia, self.temperatura_interna)
+                print('\n---- PID:', self.pid_value)
                 self.envia_sinal_controle(self.pid_value)
 
                 if(self.temperatura_interna < self.temperatura_referencia):
@@ -127,7 +127,7 @@ class Main:
 
         if dados is not None:
             botao = int.from_bytes(dados, 'little')%10
-            print('botao:', botao)
+            print('Botão selecionado:', botao)
             if botao == 1:
                 self.liga()
             elif botao == 2:
@@ -149,7 +149,6 @@ class Main:
             if temp > 0 and temp < 100:
                 self.temperatura_interna = temp
             
-            self.seta_forno()
 
     def get_temperatura_referencia(self):
         comando_temp = b'\x01\x23\xc2'
@@ -190,6 +189,7 @@ class Main:
             self.get_temperatura_interna()
             self.get_temperatura_referencia()
             self.envia_temperatura_ambiente()
+            self.controle()
             sleep(1)
 
             print("\nTEMPERATURA INTERNA:", self.temperatura_interna)
@@ -199,7 +199,7 @@ class Main:
     def trata_ctrl_c(self):
         try:
             while True:
-                sleep(2)
+                sleep(1)
         except KeyboardInterrupt:
             self.para()
             self.desliga()

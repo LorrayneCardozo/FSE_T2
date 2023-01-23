@@ -6,6 +6,7 @@ class Log:
         pass
 
     def escrever(self, temperatura_interna, temperatura_ambiente, temperatura_referencia, pid):
+        
         mensagem = f'Temperatura interna: {temperatura_interna} \nTemperatura externa: {temperatura_ambiente} \nTemperatura de referência: {temperatura_referencia}\nPID: {pid}% \n'
 
         log = open("log/log.csv", "a")
