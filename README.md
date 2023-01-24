@@ -37,3 +37,6 @@ Ao encerrar o sistema, apertando as teclas `CTRL+C`, o forno será devidamente p
 O sistema gera um arquivo de log que armazena, a cada 1 segundo, data e horário, as temperaturas interna, ambiente e de referência, e o sinal de controle da resistência e ventoinha. O arquivo pode ser encontrado em `src/log/log.csv`.
 
 ![LOG](img/log.png)
+
+## Apresentação
+[Link do vídeo de apresentação](https://www.youtube.com/watch?v=nzs_zeFFtUE)
